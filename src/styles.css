@@ -1,0 +1,531 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Z-COMPASS design system.
+ * Black / neon pink / lavender. Every colour, gradient, glow and motion value
+ * is a semantic token. Never hardcode colours in components.
+ */
+
+@theme inline {
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-lavender: var(--lavender);
+  --color-lavender-foreground: var(--lavender-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-border: var(--sidebar-border);
+
+  --shadow-glow: 0 0 0 1px var(--glow-ring), 0 12px 40px -12px var(--glow-soft);
+  --shadow-elevated: 0 24px 60px -24px var(--shadow-color);
+
+  --animate-drift-in: drift-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-slow-spin: slow-spin 42s linear infinite;
+  --animate-pulse-soft: pulse-soft 4s ease-in-out infinite;
+  --animate-compass-orbit: compass-orbit 32s linear infinite;
+  --animate-compass-needle: compass-needle 12s ease-in-out infinite;
+  --animate-ambient-drift: ambient-drift 18s ease-in-out infinite alternate;
+}
+
+:root {
+  --radius: 0.875rem;
+
+  /* Light mode — soft off-white with lavender air, still Z-COMPASS. */
+  --background: oklch(0.978 0.006 310);
+  --foreground: oklch(0.22 0.02 300);
+  --surface: oklch(0.995 0.004 310);
+  --surface-raised: oklch(1 0 0);
+  --card: oklch(0.995 0.004 310);
+  --card-foreground: oklch(0.22 0.02 300);
+  --popover: oklch(0.995 0.004 310);
+  --popover-foreground: oklch(0.22 0.02 300);
+  --primary: oklch(0.62 0.24 348);
+  --primary-foreground: oklch(0.99 0.005 340);
+  --secondary: oklch(0.95 0.018 305);
+  --secondary-foreground: oklch(0.3 0.03 300);
+  --muted: oklch(0.955 0.012 305);
+  --muted-foreground: oklch(0.52 0.025 300);
+  --accent: oklch(0.94 0.035 305);
+  --accent-foreground: oklch(0.32 0.06 300);
+  --lavender: oklch(0.66 0.16 295);
+  --lavender-foreground: oklch(0.99 0.005 300);
+  --destructive: oklch(0.58 0.22 25);
+  --destructive-foreground: oklch(0.99 0.005 340);
+  --success: oklch(0.62 0.14 160);
+  --warning: oklch(0.75 0.15 75);
+  --border: oklch(0.9 0.014 305);
+  --border-strong: oklch(0.84 0.025 305);
+  --input: oklch(0.9 0.014 305);
+  --ring: oklch(0.62 0.24 348);
+  --sidebar: oklch(0.99 0.006 310);
+  --sidebar-foreground: oklch(0.26 0.02 300);
+  --sidebar-accent: oklch(0.95 0.025 305);
+  --sidebar-border: oklch(0.91 0.014 305);
+
+  --glow-ring: oklch(0.62 0.24 348 / 18%);
+  --glow-soft: oklch(0.62 0.24 348 / 26%);
+  --shadow-color: oklch(0.4 0.06 300 / 22%);
+  --ambient-ring: oklch(0.52 0.08 305 / 26%);
+  --ambient-ring-strong: oklch(0.62 0.24 348 / 38%);
+  --ambient-axis: oklch(0.52 0.08 305 / 18%);
+  --ambient-glow: oklch(0.72 0.16 295 / 28%);
+  --ambient-core: oklch(0.62 0.24 348 / 55%);
+
+  --gradient-brand: linear-gradient(
+    100deg,
+    oklch(0.64 0.25 348) 0%,
+    oklch(0.62 0.2 320) 48%,
+    oklch(0.66 0.17 292) 100%
+  );
+  --gradient-surface: linear-gradient(
+    160deg,
+    oklch(1 0 0 / 90%) 0%,
+    oklch(0.97 0.015 305 / 70%) 100%
+  );
+  --gradient-halo: radial-gradient(
+    70% 70% at 50% 0%,
+    oklch(0.62 0.24 348 / 24%) 0%,
+    transparent 70%
+  );
+}
+
+.dark {
+  /* Dark mode — the signature experience. */
+  --background: oklch(0.11 0.012 300);
+  --foreground: oklch(0.96 0.006 310);
+  --surface: oklch(0.145 0.016 300);
+  --surface-raised: oklch(0.18 0.02 300);
+  --card: oklch(0.155 0.017 300);
+  --card-foreground: oklch(0.96 0.006 310);
+  --popover: oklch(0.165 0.018 300);
+  --popover-foreground: oklch(0.96 0.006 310);
+  --primary: oklch(0.7 0.25 348);
+  --primary-foreground: oklch(0.12 0.02 320);
+  --secondary: oklch(0.22 0.022 300);
+  --secondary-foreground: oklch(0.94 0.008 310);
+  --muted: oklch(0.2 0.02 300);
+  --muted-foreground: oklch(0.68 0.02 305);
+  --accent: oklch(0.26 0.04 300);
+  --accent-foreground: oklch(0.95 0.01 310);
+  --lavender: oklch(0.74 0.15 295);
+  --lavender-foreground: oklch(0.13 0.02 300);
+  --destructive: oklch(0.65 0.21 25);
+  --destructive-foreground: oklch(0.12 0.02 320);
+  --success: oklch(0.72 0.14 160);
+  --warning: oklch(0.8 0.15 80);
+  --border: oklch(1 0 0 / 10%);
+  --border-strong: oklch(1 0 0 / 18%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.7 0.25 348);
+  --sidebar: oklch(0.13 0.015 300);
+  --sidebar-foreground: oklch(0.92 0.008 310);
+  --sidebar-accent: oklch(0.22 0.03 300);
+  --sidebar-border: oklch(1 0 0 / 8%);
+
+  --glow-ring: oklch(0.7 0.25 348 / 28%);
+  --glow-soft: oklch(0.7 0.25 348 / 36%);
+  --shadow-color: oklch(0 0 0 / 60%);
+  --ambient-ring: oklch(0.8 0.08 305 / 22%);
+  --ambient-ring-strong: oklch(0.7 0.25 348 / 40%);
+  --ambient-axis: oklch(0.8 0.08 305 / 16%);
+  --ambient-glow: oklch(0.7 0.25 348 / 28%);
+  --ambient-core: oklch(0.74 0.16 292 / 62%);
+
+  --gradient-brand: linear-gradient(
+    100deg,
+    oklch(0.72 0.26 348) 0%,
+    oklch(0.68 0.22 322) 48%,
+    oklch(0.74 0.16 292) 100%
+  );
+  --gradient-surface: linear-gradient(
+    160deg,
+    oklch(0.2 0.025 300 / 80%) 0%,
+    oklch(0.14 0.015 300 / 60%) 100%
+  );
+  --gradient-halo: radial-gradient(
+    75% 75% at 50% 0%,
+    oklch(0.7 0.25 348 / 30%) 0%,
+    transparent 70%
+  );
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+    scrollbar-width: none;
+  }
+
+  *::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    scrollbar-width: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+}
+
+@utility text-gradient-brand {
+  background-image: var(--gradient-brand);
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-gradient-brand {
+  background-image: var(--gradient-brand);
+}
+
+@utility bg-gradient-surface {
+  background-image: var(--gradient-surface);
+}
+
+@utility bg-halo {
+  background-image: var(--gradient-halo);
+}
+
+@utility surface-panel {
+  background-image: var(--gradient-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  backdrop-filter: blur(12px);
+}
+
+@utility tracking-wordmark {
+  letter-spacing: 0.34em;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* A quiet navigation field behind authenticated screens. */
+.compass-ambient {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.compass-ambient__glow {
+  position: absolute;
+  width: min(62rem, 96vw);
+  aspect-ratio: 1;
+  top: -26rem;
+  right: -14rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, var(--ambient-glow) 0%, transparent 62%);
+  filter: blur(10px);
+  opacity: 0.95;
+  animation: var(--animate-ambient-drift);
+}
+
+.compass-ambient__dial {
+  position: absolute;
+  width: min(52rem, 88vw);
+  aspect-ratio: 1;
+  top: 4rem;
+  right: -16rem;
+  opacity: 0.95;
+  animation: var(--animate-compass-orbit);
+}
+
+.compass-ambient__ring,
+.compass-ambient__axis,
+.compass-ambient__needle,
+.compass-ambient__core {
+  position: absolute;
+  display: block;
+}
+
+.compass-ambient__ring {
+  inset: 0;
+  margin: auto;
+  border: 1px solid var(--ambient-ring);
+  border-radius: 9999px;
+}
+
+.compass-ambient__ring--outer {
+  background: repeating-conic-gradient(
+    from 0deg,
+    var(--ambient-ring-strong) 0deg 0.35deg,
+    transparent 0.35deg 15deg
+  );
+  mask: radial-gradient(
+    circle,
+    transparent 67%,
+    var(--foreground) 67.2% 68%,
+    transparent 68.2%
+  );
+}
+
+.compass-ambient__ring--middle {
+  inset: 16%;
+  border-style: dashed;
+}
+
+.compass-ambient__ring--inner {
+  inset: 34%;
+  border-color: var(--ambient-ring-strong);
+}
+
+.compass-ambient__axis {
+  inset: 10% 50%;
+  width: 1.5px;
+  background: linear-gradient(transparent, var(--ambient-axis), transparent);
+}
+
+.compass-ambient__axis--horizontal {
+  transform: rotate(90deg);
+}
+
+.compass-ambient__needle {
+  inset: 26% 49.6%;
+  width: 0.42rem;
+  border-radius: 9999px;
+  background: linear-gradient(var(--ambient-ring-strong) 0% 48%, var(--ambient-axis) 48% 100%);
+  transform-origin: 50% 50%;
+  animation: var(--animate-compass-needle);
+}
+
+.compass-ambient__core {
+  inset: 48.4%;
+  border-radius: 9999px;
+  background: var(--ambient-core);
+  box-shadow: 0 0 3.5rem var(--ambient-glow);
+}
+
+@keyframes drift-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slow-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes compass-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes compass-needle {
+  0%,
+  100% {
+    transform: rotate(-24deg);
+  }
+  45% {
+    transform: rotate(18deg);
+  }
+  62% {
+    transform: rotate(12deg);
+  }
+}
+
+@keyframes ambient-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(0.92);
+    opacity: 0.7;
+  }
+  to {
+    transform: translate3d(-8rem, 10rem, 0) scale(1.08);
+    opacity: 1;
+  }
+}
+
+/* Compass v2 — calm movement from uncertainty toward direction. */
+.compass-entry::after {
+  content: "";
+  position: absolute;
+  width: 26rem;
+  aspect-ratio: 1;
+  right: -13rem;
+  bottom: -15rem;
+  border: 1px solid var(--ambient-ring-strong);
+  border-radius: 9999px;
+  box-shadow:
+    0 0 0 4rem var(--ambient-axis),
+    0 0 0 8rem var(--ambient-axis);
+  animation: var(--animate-compass-orbit);
+  pointer-events: none;
+}
+
+.compass-stage {
+  animation: var(--animate-drift-in);
+}
+
+/* Long AI-generated words/URLs must never push a card wider than its container. */
+.compass-stage,
+.compass-card {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  min-width: 0;
+}
+
+.compass-reveal {
+  opacity: 0;
+  animation: drift-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.compass-north {
+  background:
+    radial-gradient(circle at 92% 8%, var(--ambient-glow), transparent 36%),
+    var(--gradient-surface);
+  box-shadow: var(--shadow-glow);
+}
+
+/* Animated lavender corner glow for Compass card boxes. */
+.compass-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.compass-card::before {
+  content: "";
+  position: absolute;
+  top: -4.5rem;
+  right: -4.5rem;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle at center,
+    var(--color-lavender) 0%,
+    var(--color-primary) 50%,
+    transparent 72%
+  );
+  opacity: 0.16;
+  filter: blur(22px);
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  animation: compass-card-pulse 6s ease-in-out infinite alternate;
+}
+
+@keyframes compass-card-pulse {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.92);
+    opacity: 0.12;
+  }
+  100% {
+    transform: translate3d(-0.75rem, 0.75rem, 0) scale(1.12);
+    opacity: 0.24;
+  }
+}
+
+@media (max-width: 48rem) {
+  .compass-ambient__dial {
+    width: 40rem;
+    top: 8rem;
+    right: -24rem;
+    opacity: 0.88;
+  }
+
+  .compass-ambient__glow {
+    top: -18rem;
+    right: -22rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
